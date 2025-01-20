@@ -108,7 +108,7 @@ export class Miner {
     /**
      * Stop Mining
      */
-    stop() {
+    stop() 
         if (this.process) {
             this.process.stop();
             this.process = null;
