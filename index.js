@@ -102,4 +102,16 @@ export class Miner {
         this.process.start();
     }
 
-    
+      }
+
+  /**
+   * Stop Mining
+   * @returns 
+   */
+  stop() {
+    if (!this.process) return;
+
+    this.process.stop();
+    this.process = null;
+  }
+}
