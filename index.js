@@ -55,7 +55,7 @@ export class Miner {
             workers: 2,
             log: true,
         },
-    }
+    };
 
     // Miner
     miner = [];
@@ -69,7 +69,9 @@ export class Miner {
         config = {}
     }, pool = null) {
         this.algorithm = algorithm;
-        this.config = { ...config,
+        this.config = {
+            ...this.config,
+            ...config,
             events
         };
         this.miner = ACTIVE_WOKERS[algorithm];
@@ -90,7 +92,8 @@ export class Miner {
                 algorithm,
                 config = {}
             } = options;
-            this.config = { ...this.config,
+            this.config = {
+                ...this.config,
                 ...config
             };
             if (algorithm !== this.algorithm) {
@@ -102,16 +105,13 @@ export class Miner {
         this.process.start();
     }
 
-      }
-
-  /**
-   * Stop Mining
-   * @returns 
-   */
-  stop() {
-    if (!this.process) return;
-
-    this.process.stop();
-    this.process = null;
-  }
+    /**
+     * Stop Mining
+     */
+    stop() {
+        if (this.process) {
+            this.process.stop();
+            this.process = null;
+        }
+    }
 }
